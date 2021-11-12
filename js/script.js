@@ -1,3 +1,4 @@
+"use strict";
 //#1
 const numberOfFilms = +prompt("How many films have you already seen?", "");
 
