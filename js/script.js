@@ -48,6 +48,14 @@ const personalMovieDB = {
         for (let i = 1; i < 4; i++) {
             personalMovieDB.genres[i - 1] = prompt(`Your favorite genre #${i} is?`);
         }
+    },
+    toggleVisibleMyDB: function () {
+        if(personalDatabase.private === true) {
+            return personalDatabase.private ===false;
+        }else if(personalDatabase.private===false) {
+            return personalDatabase.private === true;
+        }
+
     }
 
 };
