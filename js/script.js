@@ -1,18 +1,15 @@
 "use strict";
 
-let numberOfFilms;
-
 const personalMovieDB = {
-    count: numberOfFilms,
+    count: 0,
     movies: {},
     actors: {},
     genres: [],
     private: false,
     start: function () {
-        numberOfFilms = +prompt("How many films have you already seen?", "");
-
-        while (numberOfFilms == "" || numberOfFilms == null || isNaN(numberOfFilms)) {
-            numberOfFilms = +prompt("How many films have you already seen?", "");
+        personalMovieDB.count = +prompt("How many films have you already seen?", "");
+        while (personalMovieDB.count == "" || personalMovieDB.count == null || isNaN(personalMovieDB.count)) {
+            personalMovieDB.count = +prompt("How many films have you already seen?", "");
         }
     },
     rememberMyFilms: function () {
@@ -44,20 +41,27 @@ const personalMovieDB = {
             console.log(personalMovieDB);
         }
     },
-    writeYourGenres: function () {
-        for (let i = 1; i < 4; i++) {
-            personalMovieDB.genres[i - 1] = prompt(`Your favorite genre #${i} is?`);
+    toggleVisibleMyDB: function () {
+        if (personalMovieDB.private) {
+            personalMovieDB.private = false;
+        } else {
+            personalMovieDB.private = true;
         }
     },
-    toggleVisibleMyDB: function () {
-        if(personalDatabase.private === true) {
-            return personalDatabase.private ===false;
-        }else if(personalDatabase.private===false) {
-            return personalDatabase.private === true;
+    writeYourGenres: function () {
+        for (let i = 1; i < 2; i++) {
+            let genres = prompt(`Enter your favorite genres of films through a comma`).toLowerCase();
+
+            if (genres === "" || genres === null) {
+                console.log('Not correct input datatype');
+                i--;
+            } else {
+                personalMovieDB.genres = genres.split(", ");
+                personalMovieDB.genres.sort();
+            }
         }
-
+        personalMovieDB.genres.forEach((item, i) => {
+            console.log(`Your favorite genre ${i+1} is ${item}`);
+        });
     }
-
 };
-
-personalMovieDB.start();
